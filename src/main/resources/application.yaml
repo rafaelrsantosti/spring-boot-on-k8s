@@ -1,0 +1,35 @@
+---
+spring:
+  datasource:
+    url: jdbc:h2:mem:test.db
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+
+  h2:
+    console:
+      enabled: true
+      path: /console
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.liquibase-diff-changeLog.yaml
+
+server:
+  port: 8080
+  tomcat:
+    internal-proxies: .*
+  use-forward-headers: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        security: DEBUG
+      apache:
+        catalina:
+          valves:
+            RemoteIpValve: DEBUG
+#    org.springframework.boot.autoconfigure: DEBUG

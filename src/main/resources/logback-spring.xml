@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+      <charset>utf8</charset>
+    </encoder>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
+      <charset>utf8</charset>
+    </encoder>
+  </appender>
+
+  <appender name="FLAT-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>target/spring-on-k82.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>target/spring-on-k82.%d{yyyy-MM-dd_HH}.log.gz</fileNamePattern>
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
+      <charset>utf8</charset>
+    </encoder>
+  </appender>
+
+  <logger name="com.zaxxer.hikari" level="OFF" additivity="true" />
+  <logger name="org.springframework.web" level="DEBUG" additivity="true" />
+  <logger name="com.example.poc.k8s.springbootonk8s" level="DEBUG" additivity="true" />
+
+  <root level="INFO">
+    <appender-ref ref="FLAT-FILE" />
+    <appender-ref ref="STDOUT" />
+  </root>
+
+</configuration>
