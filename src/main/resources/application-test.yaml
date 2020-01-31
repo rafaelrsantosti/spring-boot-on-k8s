@@ -1,16 +1,10 @@
 ---
 spring:
   datasource:
-    url: jdbc:h2:mem:test.db
-    username: sa
-    password:
+    url: jdbc:postgresql://localhost:5432/dbOiControlePegasus
+    username: user
+    password: pass
     driver-class-name: org.h2.Driver
-
-
-  h2:
-    console:
-      enabled: true
-      path: /console
 
   liquibase:
     enabled: true
